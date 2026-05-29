@@ -1,121 +1,193 @@
 document.addEventListener("DOMContentLoaded", () => {
   const preloader = document.getElementById("preloader");
-  const siteHeader = document.getElementById("siteHeader");
+  const header = document.getElementById("siteHeader");
   const hamburger = document.getElementById("hamburger");
-  const navMenu = document.getElementById("navMenu");
+  const mobilePanel = document.getElementById("mobilePanel");
 
+  /* Preloader */
   window.addEventListener("load", () => {
-    setTimeout(() => preloader.classList.add("hide"), 450);
+    setTimeout(() => {
+      preloader.classList.add("hide");
+    }, 500);
   });
 
-  const handleHeader = () => {
-    if (window.scrollY > 40) siteHeader.classList.add("scrolled");
-    else siteHeader.classList.remove("scrolled");
-  };
+  /* Header background on scroll */
+  function updateHeader() {
+    if (window.scrollY > 30) header.classList.add("scrolled");
+    else header.classList.remove("scrolled");
+  }
+  updateHeader();
+  window.addEventListener("scroll", updateHeader);
 
-  handleHeader();
-  window.addEventListener("scroll", handleHeader);
+  /* Mobile sliding menu */
+  function closeMenu() {
+    hamburger.classList.remove("active");
+    mobilePanel.classList.remove("active");
+    document.body.classList.remove("menu-open");
+  }
 
   hamburger.addEventListener("click", () => {
     hamburger.classList.toggle("active");
-    navMenu.classList.toggle("active");
+    mobilePanel.classList.toggle("active");
     document.body.classList.toggle("menu-open");
   });
 
-  document.querySelectorAll(".nav-menu a").forEach((link) => {
-    link.addEventListener("click", () => {
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("active");
-      document.body.classList.remove("menu-open");
-    });
+  document.querySelectorAll(".mobile-panel a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
   });
 
+  mobilePanel.addEventListener("click", (event) => {
+    if (event.target === mobilePanel) closeMenu();
+  });
+
+  /* Scroll reveal animation */
+  const reveals = document.querySelectorAll(".reveal");
   const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          revealObserver.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("visible");
+        revealObserver.unobserve(entry.target);
       });
     },
-    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    { threshold: 0.13, rootMargin: "0px 0px -40px 0px" }
   );
+  reveals.forEach((item) => revealObserver.observe(item));
 
-  document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+  /* Mobile service carousel active card + dots */
+  const servicesTrack = document.getElementById("servicesTrack");
+  const serviceCards = servicesTrack ? Array.from(servicesTrack.querySelectorAll(".service-card")) : [];
+  const serviceDots = Array.from(document.querySelectorAll("#serviceDots button"));
 
-  const parallaxCard = document.querySelector(".parallax-card");
-  if (parallaxCard) {
-    window.addEventListener("mousemove", (event) => {
-      if (window.innerWidth < 900) return;
-      const x = (event.clientX / window.innerWidth - 0.5) * 12;
-      const y = (event.clientY / window.innerHeight - 0.5) * 12;
-      parallaxCard.style.transform = `translate(${x}px, ${y}px)`;
+  function updateServiceActive() {
+    if (!servicesTrack || !serviceCards.length) return;
+
+    const trackRect = servicesTrack.getBoundingClientRect();
+    const center = trackRect.left + trackRect.width / 2;
+
+    let activeIndex = 0;
+    let closest = Infinity;
+
+    serviceCards.forEach((card, index) => {
+      const rect = card.getBoundingClientRect();
+      const cardCenter = rect.left + rect.width / 2;
+      const distance = Math.abs(center - cardCenter);
+
+      if (distance < closest) {
+        closest = distance;
+        activeIndex = index;
+      }
+    });
+
+    serviceCards.forEach((card, index) => {
+      card.classList.toggle("is-active", index === activeIndex);
+    });
+
+    serviceDots.forEach((dot, index) => {
+      dot.classList.toggle("active", index === activeIndex);
     });
   }
 
-  const testimonials = Array.from(document.querySelectorAll(".testimonial"));
-  const prevBtn = document.getElementById("prevTestimonial");
-  const nextBtn = document.getElementById("nextTestimonial");
-  let currentTestimonial = 0;
+  if (servicesTrack) {
+    updateServiceActive();
+    servicesTrack.addEventListener("scroll", () => {
+      window.requestAnimationFrame(updateServiceActive);
+    });
+    window.addEventListener("resize", updateServiceActive);
 
-  const showTestimonial = (index) => {
-    testimonials.forEach((testimonial) => testimonial.classList.remove("active"));
-    testimonials[index].classList.add("active");
-  };
+    serviceDots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        serviceCards[index].scrollIntoView({
+          behavior: "smooth",
+          inline: "center",
+          block: "nearest"
+        });
+      });
+    });
+  }
 
-  if (testimonials.length && prevBtn && nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-      showTestimonial(currentTestimonial);
+  /* Google reviews slider */
+  const reviews = Array.from(document.querySelectorAll(".review"));
+  const prevReview = document.getElementById("prevReview");
+  const nextReview = document.getElementById("nextReview");
+  let reviewIndex = 0;
+
+  function showReview(index) {
+    reviews.forEach((review, i) => {
+      review.classList.toggle("active", i === index);
+    });
+  }
+
+  if (reviews.length && prevReview && nextReview) {
+    nextReview.addEventListener("click", () => {
+      reviewIndex = (reviewIndex + 1) % reviews.length;
+      showReview(reviewIndex);
     });
 
-    prevBtn.addEventListener("click", () => {
-      currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
-      showTestimonial(currentTestimonial);
+    prevReview.addEventListener("click", () => {
+      reviewIndex = (reviewIndex - 1 + reviews.length) % reviews.length;
+      showReview(reviewIndex);
     });
 
     setInterval(() => {
-      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-      showTestimonial(currentTestimonial);
+      reviewIndex = (reviewIndex + 1) % reviews.length;
+      showReview(reviewIndex);
     }, 6500);
   }
 
-  const escapeSvgText = (text) => String(text || "Image à remplacer")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;");
+  /* Soft magnetic effect on desktop buttons */
+  document.querySelectorAll(".magnetic").forEach((button) => {
+    button.addEventListener("mousemove", (event) => {
+      if (window.innerWidth < 900) return;
 
-  const makePlaceholder = (label) => {
-    const text = escapeSvgText(label);
+      const rect = button.getBoundingClientRect();
+      const x = event.clientX - rect.left - rect.width / 2;
+      const y = event.clientY - rect.top - rect.height / 2;
+
+      button.style.transform = `translate(${x * 0.12}px, ${y * 0.16}px)`;
+    });
+
+    button.addEventListener("mouseleave", () => {
+      button.style.transform = "";
+    });
+  });
+
+  /* Image fallback placeholders, useful while you add real images */
+  const cleanText = (text) =>
+    String(text || "Image à remplacer")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;");
+
+  function makePlaceholder(label) {
+    const safeLabel = cleanText(label);
     const svg = `
       <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
         <defs>
           <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
-            <stop offset="0%" stop-color="#171717"/>
-            <stop offset="52%" stop-color="#2a2116"/>
+            <stop offset="0%" stop-color="#080808"/>
+            <stop offset="55%" stop-color="#171717"/>
             <stop offset="100%" stop-color="#d9b37f"/>
           </linearGradient>
-          <radialGradient id="r" cx="50%" cy="35%" r="60%">
-            <stop offset="0%" stop-color="#e6c875" stop-opacity="0.38"/>
-            <stop offset="100%" stop-color="#e6c875" stop-opacity="0"/>
+          <radialGradient id="r" cx="52%" cy="42%" r="62%">
+            <stop offset="0%" stop-color="#d4af37" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#d4af37" stop-opacity="0"/>
           </radialGradient>
         </defs>
         <rect width="1200" height="900" fill="url(#g)"/>
         <rect width="1200" height="900" fill="url(#r)"/>
-        <path d="M380 238 C420 145 520 115 600 160 C680 115 780 145 820 238 C905 270 940 350 902 430 C956 520 920 632 820 662 C780 755 680 785 600 740 C520 785 420 755 380 662 C280 632 244 520 298 430 C260 350 295 270 380 238Z" fill="none" stroke="#e6c875" stroke-width="7" opacity="0.75"/>
-        <text x="600" y="430" text-anchor="middle" font-family="Georgia, serif" font-size="56" fill="#fff8e8">Le Palais de la Beauté</text>
-        <text x="600" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#ead4ad">${text}</text>
-        <text x="600" y="560" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#f7f2e7" opacity="0.75">Remplacez cette image dans le dossier /assets</text>
+        <path d="M380 230 C425 140 520 120 600 160 C680 120 775 140 820 230 C900 265 930 345 890 430 C950 520 910 640 820 670 C775 760 680 785 600 740 C520 785 425 760 380 670 C290 640 250 520 310 430 C270 345 300 265 380 230Z" fill="none" stroke="#e8c86d" stroke-width="7" opacity="0.78"/>
+        <text x="600" y="420" text-anchor="middle" font-family="Georgia, serif" font-size="56" fill="#fff8e8">Le Palais de la Beauté</text>
+        <text x="600" y="495" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#e8c86d">${safeLabel}</text>
+        <text x="600" y="552" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#fff8e8" opacity="0.72">Remplacez cette image dans /assets</text>
       </svg>
     `;
     return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
-  };
+  }
 
   document.querySelectorAll("img").forEach((img) => {
     img.addEventListener("error", () => {
-      const label = img.dataset.fallback || img.alt || "Image à remplacer";
-      img.src = makePlaceholder(label);
+      img.src = makePlaceholder(img.dataset.fallback || img.alt);
       img.classList.add("image-placeholder");
     });
   });

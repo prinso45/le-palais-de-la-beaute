@@ -4,315 +4,451 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Le Palais de la Beauté | Salon de coiffure & lissage à Casablanca</title>
-  <meta name="description" content="Le Palais de la Beauté à Casablanca — expert en lissage, protéine, soins capillaires, hairstyling et beauté. Réservez votre rendez-vous par WhatsApp." />
+  <title>Le Palais de la Beauté | Salon de coiffure à Casablanca</title>
+  <meta name="description" content="Le Palais de la Beauté à Casablanca — lissage, protéine, soins capillaires, hairstyling, brushing et beauté. Réservation rapide par WhatsApp." />
 
+  <!-- Google Fonts + Icons. Internet is needed for these to load. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
   <!--
-    IMAGE GUIDE:
-    Put all images inside /assets/.
-    To change an image, keep the same file name or edit the src="" path below.
-    Current expected names:
-    logo-beige.png, logo-black-gold.png, icon-logo.png, hero-main.jpg,
-    salon-wide.jpg, hair-result-1.jpg, hair-result-2.jpg, hair-result-3.jpg,
-    before-1.jpg, after-1.jpg, before-2.jpg, after-2.jpg
+    SIMPLE IMAGE GUIDE FOR BEGINNERS:
+    All images are inside the folder named "assets".
+
+    To change an image later:
+    1. Put your new image inside assets.
+    2. Rename it exactly like the image you want to replace.
+    3. Refresh Google Chrome.
+
+    Main files used:
+    - icon-logo.png        transparent gold icon used in the top-left navbar
+    - logo-beige.png       beige/light logo
+    - logo-black-gold.png  black/gold logo
+    - hero-main.jpg        first hero background image
+    - salon-wide.jpg       about/background salon image
+    - hair-result-1.jpg    gallery image
+    - hair-result-2.jpg    gallery image
+    - hair-result-3.jpg    gallery image
+
+    Before/after images can be added later:
+    - before-1.jpg, after-1.jpg, before-2.jpg, after-2.jpg
   -->
 
+  <!-- PRELOADER -->
   <div class="preloader" id="preloader">
-    <div class="preloader-card">
-      <img src="./assets/logo-beige.png" alt="Le Palais de la Beauté" class="preloader-logo" data-fallback="Logo beige" />
-      <div class="loader-line"><span></span></div>
-      <p>Préparation de votre expérience beauté...</p>
-    </div>
+    <div class="preloader__glow"></div>
+    <img src="./assets/icon-logo.png" alt="Le Palais de la Beauté" class="preloader__logo" data-fallback="Logo" />
+    <p>Le Palais de la Beauté</p>
+    <span>Chargement de l’expérience...</span>
   </div>
 
+  <!-- FLOATING WHATSAPP -->
   <a class="floating-whatsapp" href="https://wa.me/212651750012" target="_blank" aria-label="Réserver sur WhatsApp">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
 
+  <!-- HEADER -->
   <header class="site-header" id="siteHeader">
     <nav class="navbar">
-      <a href="#accueil" class="nav-logo" aria-label="Accueil">
-        <img src="./assets/logo-beige.png" alt="Le Palais de la Beauté" data-fallback="Logo" />
+      <a href="#accueil" class="nav-logo" aria-label="Le Palais de la Beauté">
+        <!-- Transparent gold icon requested by you -->
+        <img src="./assets/icon-logo.png" alt="Le Palais de la Beauté" data-fallback="Logo transparent" />
+      </a>
+
+      <div class="desktop-menu">
+        <a href="#accueil">Accueil</a>
+        <a href="#services">Services</a>
+        <a href="#resultats">Résultats</a>
+        <a href="#avis">Avis</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <a class="desktop-cta" href="https://wa.me/212651750012" target="_blank">
+        <span>Réserver</span>
+        <i class="fa-solid fa-arrow-right"></i>
       </a>
 
       <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu">
         <span></span>
         <span></span>
       </button>
-
-      <div class="nav-menu" id="navMenu">
-        <a href="#accueil">Accueil</a>
-        <a href="#services">Services</a>
-        <a href="#resultats">Résultats</a>
-        <a href="#apropos">À propos</a>
-        <a href="#contact">Contact</a>
-        <a href="https://wa.me/212651750012" target="_blank" class="nav-cta">Réserver</a>
-      </div>
     </nav>
+
+    <!-- Modern mobile sliding menu -->
+    <div class="mobile-panel" id="mobilePanel">
+      <div class="mobile-panel__inner">
+        <img src="./assets/icon-logo.png" alt="Le Palais de la Beauté" class="mobile-panel__logo" data-fallback="Logo menu" />
+        <p>Salon de coiffure & beauté à Casablanca</p>
+
+        <div class="mobile-links">
+          <a href="#accueil"><span>01</span> Accueil</a>
+          <a href="#services"><span>02</span> Services</a>
+          <a href="#resultats"><span>03</span> Résultats</a>
+          <a href="#avis"><span>04</span> Avis Google</a>
+          <a href="#contact"><span>05</span> Contact</a>
+        </div>
+
+        <a class="mobile-booking" href="https://wa.me/212651750012" target="_blank">
+          Réserver sur WhatsApp
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
   </header>
 
   <main>
-    <section class="hero section" id="accueil">
-      <div class="hero-bg-orb hero-orb-1"></div>
-      <div class="hero-bg-orb hero-orb-2"></div>
+    <!-- HERO -->
+    <section class="hero" id="accueil">
+      <div class="hero-bg">
+        <img src="./assets/hero-main.jpg" alt="Cheveux lisses et brillants" data-fallback="Image hero cheveux" />
+      </div>
+      <div class="hero-noise"></div>
+      <div class="hero-gold-line"></div>
 
-      <div class="container hero-grid">
-        <div class="hero-content reveal">
-          <div class="eyebrow"><span></span>Expert en lissage & protéine</div>
-          <h1>Révélez la beauté royale de vos cheveux</h1>
-          <p class="hero-text">
-            Un salon à Casablanca dédié aux cheveux lisses, brillants, soyeux et bien entretenus.
-            Lissage, soins capillaires, coiffure, brushing et mise en beauté dans une ambiance élégante.
+      <div class="container hero-content">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">
+            <span></span>
+            Expert en lissage & protéine
+          </div>
+
+          <h1>
+            Révélez la beauté royale de vos cheveux
+          </h1>
+
+          <p>
+            À Casablanca, Le Palais de la Beauté sublime vos cheveux avec lissage, protéine,
+            soins capillaires, brushing, hairstyling et mise en beauté dans une ambiance élégante.
           </p>
 
           <div class="hero-actions">
-            <a href="https://wa.me/212651750012" target="_blank" class="btn btn-primary">
-              <i class="fa-brands fa-whatsapp"></i> Réserver sur WhatsApp
+            <a href="https://wa.me/212651750012" target="_blank" class="btn btn-primary magnetic">
+              <i class="fa-brands fa-whatsapp"></i>
+              Réserver sur WhatsApp
             </a>
-            <a href="#services" class="btn btn-secondary">Découvrir les services</a>
-          </div>
-
-          <div class="hero-trust">
-            <div><strong>Depuis 2013</strong><span>Expertise beauté</span></div>
-            <div><strong>Casablanca</strong><span>Roches Noires</span></div>
-            <div><strong>Résultats</strong><span>Avant / après</span></div>
+            <a href="#services" class="btn btn-glass magnetic">
+              Découvrir les services
+            </a>
           </div>
         </div>
 
-        <div class="hero-visual reveal delay-1">
-          <div class="hero-image-frame parallax-card">
-            <img src="./assets/hero-main.jpg" alt="Cheveux brillants après soin au salon" data-fallback="Image hero cheveux" />
-            <div class="hero-logo-badge">
-              <img src="./assets/icon-logo.png" alt="Icône Le Palais de la Beauté" data-fallback="Icône logo" />
-            </div>
-          </div>
-
-          <div class="floating-card floating-card-1"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Brillance</span></div>
-          <div class="floating-card floating-card-2"><i class="fa-solid fa-scissors"></i><span>Hairstyling</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="booking-strip reveal">
-      <div class="container booking-content">
-        <div>
-          <span class="booking-icon"><i class="fa-regular fa-calendar-check"></i></span>
+        <div class="hero-stats reveal delay-1">
           <div>
-            <h2>Prête à révéler votre beauté ?</h2>
-            <p>Réservez votre rendez-vous en quelques secondes.</p>
+            <strong>Depuis 2013</strong>
+            <span>Expertise beauté</span>
+          </div>
+          <div>
+            <strong>4,5/5</strong>
+            <span>37 avis Google</span>
+          </div>
+          <div>
+            <strong>Casablanca</strong>
+            <span>Roches Noires</span>
           </div>
         </div>
-        <a href="https://wa.me/212651750012" target="_blank" class="btn btn-dark">Réserver maintenant <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="hero-scroll">
+        <span>Scroll</span>
+        <i></i>
       </div>
     </section>
 
+    <!-- BOOKING BAR -->
+    <section class="booking-bar reveal">
+      <div class="container booking-shell">
+        <div class="booking-left">
+          <span><i class="fa-regular fa-calendar-check"></i></span>
+          <div>
+            <h2>Prête à transformer vos cheveux ?</h2>
+            <p>Envoyez une photo de vos cheveux et recevez une première orientation.</p>
+          </div>
+        </div>
+
+        <a href="https://wa.me/212651750012?text=Bonjour%20Le%20Palais%20de%20la%20Beaut%C3%A9%2C%20je%20souhaite%20r%C3%A9server%20un%20rendez-vous." target="_blank" class="btn btn-dark magnetic">
+          Réserver maintenant
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
     <section class="services section" id="services">
       <div class="container">
         <div class="section-heading reveal">
           <p class="section-kicker">Nos prestations</p>
-          <h2>Des soins pensés pour sublimer vos cheveux</h2>
-          <p>Une sélection de services essentiels pour une transformation élégante, douce et visible.</p>
+          <h2>Un rituel beauté pour chaque besoin</h2>
+          <p>Sur mobile, faites glisser les cartes pour découvrir les services.</p>
         </div>
 
-        <div class="services-grid">
-          <article class="service-card reveal">
-            <div class="service-icon"><i class="fa-solid fa-droplet"></i></div>
-            <h3>Lissage & protéine</h3>
-            <p>Pour des cheveux plus lisses, brillants, doux et faciles à coiffer.</p>
-            <a href="https://wa.me/212651750012?text=Bonjour%20Le%20Palais%20de%20la%20Beaut%C3%A9%2C%20je%20souhaite%20des%20informations%20sur%20le%20lissage%20et%20la%20prot%C3%A9ine." target="_blank">Demander un conseil</a>
-          </article>
+        <div class="services-wrap reveal">
+          <div class="services-track" id="servicesTrack">
+            <article class="service-card">
+              <div class="service-bg"></div>
+              <div class="service-icon"><i class="fa-solid fa-droplet"></i></div>
+              <span class="service-number">01</span>
+              <h3>Lissage & protéine</h3>
+              <p>Cheveux plus lisses, brillants, doux et faciles à coiffer.</p>
+              <a href="https://wa.me/212651750012?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20le%20lissage%20et%20la%20prot%C3%A9ine." target="_blank">
+                Demander un conseil
+              </a>
+            </article>
 
-          <article class="service-card reveal delay-1">
-            <div class="service-icon"><i class="fa-solid fa-scissors"></i></div>
-            <h3>Hairstyling</h3>
-            <p>Coupe, brushing, coiffure et mise en forme pour chaque occasion.</p>
-            <a href="https://wa.me/212651750012?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20un%20service%20hairstyling." target="_blank">Réserver</a>
-          </article>
+            <article class="service-card">
+              <div class="service-bg"></div>
+              <div class="service-icon"><i class="fa-solid fa-scissors"></i></div>
+              <span class="service-number">02</span>
+              <h3>Hairstyling</h3>
+              <p>Coupe, brushing, coiffure et mise en forme pour chaque occasion.</p>
+              <a href="https://wa.me/212651750012?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20un%20service%20hairstyling." target="_blank">
+                Réserver
+              </a>
+            </article>
 
-          <article class="service-card reveal delay-2">
-            <div class="service-icon"><i class="fa-solid fa-spa"></i></div>
-            <h3>Soins capillaires</h3>
-            <p>Hydratation, réparation et nutrition pour cheveux fatigués ou abîmés.</p>
-            <a href="https://wa.me/212651750012?text=Bonjour%2C%20je%20souhaite%20un%20soin%20capillaire." target="_blank">En savoir plus</a>
-          </article>
+            <article class="service-card">
+              <div class="service-bg"></div>
+              <div class="service-icon"><i class="fa-solid fa-spa"></i></div>
+              <span class="service-number">03</span>
+              <h3>Soins capillaires</h3>
+              <p>Hydratation, réparation et nutrition pour cheveux fatigués ou abîmés.</p>
+              <a href="https://wa.me/212651750012?text=Bonjour%2C%20je%20souhaite%20un%20soin%20capillaire." target="_blank">
+                En savoir plus
+              </a>
+            </article>
 
-          <article class="service-card reveal delay-3">
-            <div class="service-icon"><i class="fa-solid fa-star"></i></div>
-            <h3>Esthétique & beauté</h3>
-            <p>Une expérience beauté complète dans un cadre chaleureux et raffiné.</p>
-            <a href="https://wa.me/212651750012?text=Bonjour%2C%20je%20souhaite%20conna%C3%AEtre%20vos%20services%20beaut%C3%A9." target="_blank">Contacter</a>
-          </article>
+            <article class="service-card">
+              <div class="service-bg"></div>
+              <div class="service-icon"><i class="fa-solid fa-star"></i></div>
+              <span class="service-number">04</span>
+              <h3>Esthétique & beauté</h3>
+              <p>Une expérience beauté complète, élégante et personnalisée.</p>
+              <a href="https://wa.me/212651750012?text=Bonjour%2C%20je%20souhaite%20conna%C3%AEtre%20vos%20services%20beaut%C3%A9." target="_blank">
+                Contacter
+              </a>
+            </article>
+          </div>
+
+          <div class="service-dots" id="serviceDots" aria-hidden="true">
+            <button class="active"></button>
+            <button></button>
+            <button></button>
+            <button></button>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- RESULTS -->
     <section class="results section" id="resultats">
       <div class="container">
-        <div class="split-heading reveal">
-          <div>
-            <p class="section-kicker">Résultats visibles</p>
-            <h2>Avant / après, brillance & transformation</h2>
-          </div>
-          <p>Remplacez ces images par les meilleures transformations Instagram du salon. Le layout est prêt pour accueillir vos vraies photos.</p>
+        <div class="editorial-heading reveal">
+          <p class="section-kicker">Résultats visibles</p>
+          <h2>Des cheveux brillants, souples et élégants</h2>
+          <p>Remplacez ces images par les meilleures transformations réelles du salon pour une version finale client.</p>
         </div>
 
-        <div class="gallery-grid">
-          <div class="gallery-card large reveal">
-            <img src="./assets/hair-result-1.jpg" alt="Résultat cheveux lisses et brillants" data-fallback="Résultat cheveux 1" />
-            <div class="gallery-overlay"><span>Lissage protéine</span><h3>Cheveux brillants & soyeux</h3></div>
-          </div>
+        <div class="result-showcase">
+          <article class="result-card result-card--large reveal">
+            <img src="./assets/hair-result-1.jpg" alt="Cheveux lisses et brillants" data-fallback="Résultat cheveux 1" />
+            <div>
+              <span>Lissage protéine</span>
+              <h3>Brillance miroir</h3>
+            </div>
+          </article>
 
-          <div class="gallery-card reveal delay-1">
-            <img src="./assets/hair-result-2.jpg" alt="Transformation cheveux au salon" data-fallback="Résultat cheveux 2" />
-            <div class="gallery-overlay"><span>Transformation</span><h3>Texture maîtrisée</h3></div>
-          </div>
+          <article class="result-card reveal delay-1">
+            <img src="./assets/hair-result-2.jpg" alt="Résultat salon" data-fallback="Résultat cheveux 2" />
+            <div>
+              <span>Transformation</span>
+              <h3>Texture maîtrisée</h3>
+            </div>
+          </article>
 
-          <div class="gallery-card reveal delay-2">
+          <article class="result-card reveal delay-2">
             <img src="./assets/hair-result-3.jpg" alt="Brushing élégant" data-fallback="Résultat cheveux 3" />
-            <div class="gallery-overlay"><span>Brushing</span><h3>Volume naturel</h3></div>
-          </div>
+            <div>
+              <span>Hairstyling</span>
+              <h3>Volume naturel</h3>
+            </div>
+          </article>
         </div>
 
-        <div class="before-after-grid">
-          <article class="ba-card reveal">
-            <div class="ba-images">
-              <figure><img src="./assets/before-1.jpg" alt="Avant soin capillaire" data-fallback="Avant 1" /><figcaption>Avant</figcaption></figure>
-              <figure><img src="./assets/after-1.jpg" alt="Après soin capillaire" data-fallback="Après 1" /><figcaption>Après</figcaption></figure>
-            </div>
-            <h3>Transformation douceur</h3>
-            <p>Ajoutez ici une vraie transformation du salon.</p>
-          </article>
+        <div class="before-after reveal">
+          <div class="ba-copy">
+            <p class="section-kicker">Avant / après</p>
+            <h3>Ajoutez ici les vraies transformations du salon</h3>
+            <p>Les emplacements sont prêts. Il suffit de remplacer les images dans le dossier assets.</p>
+          </div>
 
-          <article class="ba-card reveal delay-1">
-            <div class="ba-images">
-              <figure><img src="./assets/before-2.jpg" alt="Avant lissage" data-fallback="Avant 2" /><figcaption>Avant</figcaption></figure>
-              <figure><img src="./assets/after-2.jpg" alt="Après lissage" data-fallback="Après 2" /><figcaption>Après</figcaption></figure>
-            </div>
-            <h3>Brillance miroir</h3>
-            <p>Ajoutez ici une deuxième transformation avant / après.</p>
-          </article>
+          <div class="ba-grid">
+            <figure>
+              <img src="./assets/before-1.jpg" alt="Avant lissage" data-fallback="Avant 1" />
+              <figcaption>Avant</figcaption>
+            </figure>
+            <figure>
+              <img src="./assets/after-1.jpg" alt="Après lissage" data-fallback="Après 1" />
+              <figcaption>Après</figcaption>
+            </figure>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- ABOUT -->
     <section class="about section" id="apropos">
       <div class="container about-grid">
-        <div class="about-visual reveal">
+        <div class="about-image reveal">
           <img src="./assets/salon-wide.jpg" alt="Salon Le Palais de la Beauté" data-fallback="Image salon" />
-          <div class="about-pattern"></div>
+          <div class="about-logo-mark">
+            <img src="./assets/icon-logo.png" alt="Logo Le Palais de la Beauté" data-fallback="Logo" />
+          </div>
         </div>
 
-        <div class="about-content reveal delay-1">
+        <div class="about-copy reveal delay-1">
           <p class="section-kicker">Le Palais de la Beauté</p>
-          <h2>Une expérience beauté chaleureuse, élégante et personnalisée</h2>
-          <p>Ici, chaque cliente est accueillie avec attention. L’objectif est simple : comprendre vos cheveux, choisir le soin adapté et vous offrir un résultat qui vous met en valeur.</p>
+          <h2>Une expérience beauté raffinée, chaleureuse et personnalisée</h2>
+          <p>
+            L’équipe prend le temps de comprendre vos cheveux, votre style et le résultat souhaité.
+            Chaque rendez-vous est pensé pour vous offrir une finition élégante et un moment agréable.
+          </p>
 
-          <div class="about-points">
+          <div class="feature-list">
             <div><i class="fa-solid fa-gem"></i><span>Finition premium</span></div>
             <div><i class="fa-solid fa-shield-heart"></i><span>Conseil personnalisé</span></div>
-            <div><i class="fa-solid fa-sparkles"></i><span>Résultats élégants</span></div>
+            <div><i class="fa-solid fa-wand-magic-sparkles"></i><span>Résultat visible</span></div>
           </div>
 
-          <a href="https://wa.me/212651750012" target="_blank" class="btn btn-primary">Prendre rendez-vous</a>
+          <a class="btn btn-primary magnetic" href="https://wa.me/212651750012" target="_blank">
+            Prendre rendez-vous
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="process section">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="section-kicker">Comment ça se passe ?</p>
-          <h2>Une réservation simple, rapide et rassurante</h2>
+    <!-- GOOGLE REVIEWS -->
+    <section class="reviews section" id="avis">
+      <div class="container reviews-grid">
+        <div class="rating-card reveal">
+          <span class="google-label"><i class="fa-brands fa-google"></i> Avis Google</span>
+          <strong>4,5</strong>
+          <div class="stars">★★★★★</div>
+          <p>Basé sur 37 avis</p>
+
+          <div class="rating-bars">
+            <span style="--w: 95%"></span>
+            <span style="--w: 12%"></span>
+            <span style="--w: 5%"></span>
+            <span style="--w: 2%"></span>
+          </div>
         </div>
 
-        <div class="process-grid">
-          <div class="process-step reveal"><span>01</span><h3>Contact WhatsApp</h3><p>Envoyez un message avec votre demande, vos cheveux et le résultat souhaité.</p></div>
-          <div class="process-step reveal delay-1"><span>02</span><h3>Conseil beauté</h3><p>L’équipe vous oriente vers le service le plus adapté : lissage, soin, brushing ou coiffure.</p></div>
-          <div class="process-step reveal delay-2"><span>03</span><h3>Rendez-vous au salon</h3><p>Profitez d’une expérience élégante et repartez avec un résultat qui vous ressemble.</p></div>
+        <div class="reviews-content reveal delay-1">
+          <p class="section-kicker">La confiance des clientes</p>
+          <h2>Des avis qui parlent du résultat</h2>
+
+          <div class="review-slider" id="reviewSlider">
+            <article class="review active">
+              <div class="review-head">
+                <div class="avatar">M</div>
+                <div><h3>Malak Ben</h3><span>★★★★★</span></div>
+              </div>
+              <p>“J’ai fait un lissage dans ce salon et je suis satisfaite. Le coiffeur était très sympa, professionnel et excellent.”</p>
+            </article>
+
+            <article class="review">
+              <div class="review-head">
+                <div class="avatar">S</div>
+                <div><h3>Sophiette</h3><span>★★★★★</span></div>
+              </div>
+              <p>“J’ai fait une protéine, je suis vraiment très satisfaite. Je recommande vivement ce salon de coiffure.”</p>
+            </article>
+
+            <article class="review">
+              <div class="review-head">
+                <div class="avatar">N</div>
+                <div><h3>Nisrine Radhouani</h3><span>★★★★★</span></div>
+              </div>
+              <p>“Très satisfaite du beau résultat. Merci à Amine et Zouheir, c’est une équipe qui gagne.”</p>
+            </article>
+
+            <article class="review">
+              <div class="review-head">
+                <div class="avatar">J</div>
+                <div><h3>Jalil Samine</h3><span>★★★★★</span></div>
+              </div>
+              <p>“Personnel très professionnel.”</p>
+            </article>
+          </div>
+
+          <div class="review-controls">
+            <button id="prevReview" aria-label="Avis précédent"><i class="fa-solid fa-arrow-left"></i></button>
+            <button id="nextReview" aria-label="Avis suivant"><i class="fa-solid fa-arrow-right"></i></button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Le%20Palais%20De%20La%20Beaut%C3%A9%20Casablanca" target="_blank">
+              Voir sur Google
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="testimonials section">
-      <div class="container">
-        <div class="split-heading reveal">
-          <div>
-            <p class="section-kicker">Avis clientes</p>
-            <h2>La confiance se construit avec les résultats</h2>
-          </div>
-          <p>Remplacez ces avis par de vrais témoignages Instagram ou Google.</p>
-        </div>
-
-        <div class="testimonial-slider reveal" id="testimonialSlider">
-          <article class="testimonial active"><div class="stars">★★★★★</div><p>“Très bon accueil, résultat magnifique, mes cheveux sont beaucoup plus doux et brillants.”</p><span>Cliente satisfaite</span></article>
-          <article class="testimonial"><div class="stars">★★★★★</div><p>“Service professionnel, conseils clairs et résultat très élégant. Je recommande.”</p><span>Cliente Casablanca</span></article>
-          <article class="testimonial"><div class="stars">★★★★★</div><p>“Le rendu après le soin est superbe. Cheveux lisses, brillants et faciles à coiffer.”</p><span>Cliente fidèle</span></article>
-
-          <div class="testimonial-controls">
-            <button id="prevTestimonial" aria-label="Avis précédent"><i class="fa-solid fa-arrow-left"></i></button>
-            <button id="nextTestimonial" aria-label="Avis suivant"><i class="fa-solid fa-arrow-right"></i></button>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- CONTACT -->
     <section class="contact section" id="contact">
-      <div class="container contact-grid">
-        <div class="contact-content reveal">
+      <div class="container contact-shell reveal">
+        <div class="contact-bg-logo">
+          <img src="./assets/icon-logo.png" alt="Le Palais de la Beauté" data-fallback="Logo" />
+        </div>
+
+        <div class="contact-copy">
           <p class="section-kicker">Contact & réservation</p>
           <h2>Réservez votre moment beauté</h2>
-          <p>Pour une demande de prix, un conseil ou une réservation, contactez directement le salon.</p>
-
-          <div class="contact-list">
-            <a href="tel:+212651750012"><i class="fa-solid fa-phone"></i><span>06 51 75 00 12</span></a>
-            <a href="https://wa.me/212651750012" target="_blank"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp réservation</span></a>
-            <a href="https://www.instagram.com/palaisdelabeaute.ma/" target="_blank"><i class="fa-brands fa-instagram"></i><span>@palaisdelabeaute.ma</span></a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Le%20Palais%20De%20La%20Beaut%C3%A9%20Casablanca%20Bd%20Zubayr%20Ibn%20Al%20Awam" target="_blank"><i class="fa-solid fa-location-dot"></i><span>Roches Noires, Casablanca</span></a>
-          </div>
+          <p>Un message WhatsApp suffit pour demander un conseil, un prix ou un rendez-vous.</p>
         </div>
 
-        <div class="contact-card reveal delay-1">
-          <img src="./assets/logo-beige.png" alt="Le Palais de la Beauté" data-fallback="Logo contact" />
-          <h3>Votre beauté, notre passion.</h3>
-          <p>Envoyez une photo de vos cheveux sur WhatsApp pour recevoir une première orientation.</p>
-          <a href="https://wa.me/212651750012?text=Bonjour%20Le%20Palais%20de%20la%20Beaut%C3%A9%2C%20je%20souhaite%20r%C3%A9server%20un%20rendez-vous." target="_blank" class="btn btn-primary full">Envoyer un message</a>
+        <div class="contact-actions">
+          <a href="tel:+212651750012"><i class="fa-solid fa-phone"></i><span>06 51 75 00 12</span></a>
+          <a href="https://wa.me/212651750012" target="_blank"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></a>
+          <a href="https://www.instagram.com/palaisdelabeaute.ma/" target="_blank"><i class="fa-brands fa-instagram"></i><span>Instagram</span></a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Le%20Palais%20De%20La%20Beaut%C3%A9%20Casablanca" target="_blank"><i class="fa-solid fa-location-dot"></i><span>Casablanca</span></a>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- PREMIUM FOOTER -->
   <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <img src="./assets/logo-black-gold.png" alt="Le Palais de la Beauté" class="footer-logo" data-fallback="Logo footer" />
+    <div class="footer-glow"></div>
+
+    <div class="container footer-shell reveal">
+      <div class="footer-brand">
+        <img src="./assets/icon-logo.png" alt="Le Palais de la Beauté" data-fallback="Logo footer" />
+        <h2>Le Palais de la Beauté</h2>
         <p>Salon de coiffure & beauté à Casablanca. Lissage, protéine, soins capillaires, brushing et mise en beauté.</p>
       </div>
 
-      <div>
-        <h3>Navigation</h3>
+      <div class="footer-pills">
         <a href="#accueil">Accueil</a>
         <a href="#services">Services</a>
         <a href="#resultats">Résultats</a>
+        <a href="#avis">Avis</a>
         <a href="#contact">Contact</a>
       </div>
 
-      <div>
-        <h3>Contact</h3>
-        <a href="tel:+212651750012">06 51 75 00 12</a>
-        <a href="https://wa.me/212651750012" target="_blank">WhatsApp</a>
-        <a href="https://www.instagram.com/palaisdelabeaute.ma/" target="_blank">Instagram</a>
+      <div class="footer-contact">
+        <a href="tel:+212651750012"><i class="fa-solid fa-phone"></i> Appeler</a>
+        <a href="https://wa.me/212651750012" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        <a href="https://www.instagram.com/palaisdelabeaute.ma/" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a>
       </div>
     </div>
 
-    <div class="agency-bar">Prototype website designed & Developed by Yassine AGUERD</div>
+    <div class="agency-bar">
+      <span>Prototype website designed & Developed by Yassine AGUERD</span>
+    </div>
   </footer>
 
   <script src="./script.js"></script>
